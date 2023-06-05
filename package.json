@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "site": "node app.js",
+    "start": "node bot.js",
+    "dev": "nodemon bot.js"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
+    "node-fetch": "^1.7.3",
+    "node-telegram-bot-api": "^0.60.0"
+  }
+}
