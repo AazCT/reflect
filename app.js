@@ -109,9 +109,25 @@ http.createServer(async function(request, response){
             }
             response.end();
             return;
+        } else {
+            let filePath;
+            switch (request.url) {
+                case "/scr.js":
+                    filePath = path.join(__dirname, 'scr.js');
+                    break
+                case "/style.css":
+                    filePath = path.join(__dirname, 'style.css');
+                    break
+                default:
+                    filePath = path.join(__dirname, 'main.html');
+            }
+            let stat = fileSystem.statSync(filePath);
+            response.setHeader("Content-Length", stat.size);
+            let readStream = fileSystem.createReadStream(filePath);
+            readStream.pipe(response);
         }
         
-        response.end("Hello world!");
+        //response.end("Hello world!");
     } else response.end("Hello world!");
 }).listen(3000, () => {
     console.log("Server is running at port 3000...");
