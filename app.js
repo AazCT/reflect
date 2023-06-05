@@ -8,20 +8,6 @@ const path = require('path');
 const reflect = require('./reflect.js');
 const qconv = require('./qconv');
 
-async function main() {
-    const conn = await mysql.createConnection(config);
-    const [rows, fields] = await conn.execute('SELECT * FROM myurl');
-    //console.log(rows);
-    conn.end();
-    return rows;
-}
-
-async function f() {
-    let a = await main();
-    return a;
-    //console.log(a);
-}
-
 const httpServer = http.createServer(async (request, response) => {
     //console.log('server work');
     response.setHeader("Content-Type", "text/html; charset=utf-8;");
@@ -101,5 +87,4 @@ const httpServer = http.createServer(async (request, response) => {
 
 httpServer.listen(3000, () => {
     console.log("Server is running at port 3000...");
-	bottg.start();
 });
