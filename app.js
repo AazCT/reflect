@@ -98,7 +98,7 @@ http.createServer(async function(request, response){
         if (urlReq.query.reflect) {
             if (urlReq.query.reflect == 'vpngate') {
                 const ref = await reflect.get('vpngate');
-                console.log('ref = ' + ref);
+                //console.log('ref = ' + ref);
                 if (!ref) {
                     response.setHeader("Content-Length", 5);
                     response.write('Error');
@@ -111,7 +111,7 @@ http.createServer(async function(request, response){
             return;
         }
         
-        response.end("get ok!");
+        response.end("Hello world!");
     } else response.end("Hello world!");
 }).listen(3000, () => {
     console.log("Server is running at port 3000...");
