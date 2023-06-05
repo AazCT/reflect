@@ -85,6 +85,12 @@ const httpServer = http.createServer(async (request, response) => {
     }
 });
 
-httpServer.listen(3000, () => {
+/*httpServer.listen(3000, () => {
+    console.log("Server is running at port 3000...");
+});*/
+http.createServer(function(request, response){
+    console.log('server work');
+    response.end("Hello world!");
+}).listen(3000, () => {
     console.log("Server is running at port 3000...");
 });
