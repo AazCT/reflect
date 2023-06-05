@@ -109,6 +109,23 @@ http.createServer(async function(request, response){
             }
             response.end();
             return;
+        } else if (urlReq.query.tenge) {
+            if (urlReq.query.tenge) {
+                const r = await qconv.getTengeFunc(urlReq.query.tenge);
+                if (urlReq.query.silent) {
+                    if (r != 0) {
+                        response.write(r);
+                    } else {
+                        response.write('Error');
+                    }
+                } else {
+                    response.write(`<html><head><title>${urlReq.query.tenge} тенге</title></head><body><h2>${r} р.</h2></body></html>`);
+                }
+                response.end();
+                return;
+            }
+            response.write("<h2>Nothing to convert.</h2>");
+            response.end();  
         } else {
             let filePath;
             switch (request.url) {
