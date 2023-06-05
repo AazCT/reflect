@@ -88,7 +88,7 @@ const httpServer = http.createServer(async (request, response) => {
 /*httpServer.listen(3000, () => {
     console.log("Server is running at port 3000...");
 });*/
-http.createServer(function(request, response){
+http.createServer(async function(request, response){
     console.log('server work');
     response.setHeader("Content-Type", "text/html; charset=utf-8;");
     if (request.method === 'GET') {
@@ -98,7 +98,7 @@ http.createServer(function(request, response){
         if (urlReq.query.reflect) {
             if (urlReq.query.reflect == 'vpngate') {
                 const ref = await reflect.get('vpngate');
-                //console.log('ref = ' + ref);
+                console.log('ref = ' + ref);
                 if (!ref) {
                     response.setHeader("Content-Length", 5);
                     response.write('Error');
