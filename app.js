@@ -91,7 +91,11 @@ const httpServer = http.createServer(async (request, response) => {
 http.createServer(function(request, response){
     console.log('server work');
     response.setHeader("Content-Type", "text/html; charset=utf-8;");
-    response.end("Hello world!");
+    if (request.method === 'GET') {
+        let urlReq = url.parse(request.url, true);
+        console.log(urlReq.query.test);
+        response.end("get ok!");
+    } else response.end("Hello world!");
 }).listen(3000, () => {
     console.log("Server is running at port 3000...");
 });
