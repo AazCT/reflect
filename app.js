@@ -93,7 +93,24 @@ http.createServer(function(request, response){
     response.setHeader("Content-Type", "text/html; charset=utf-8;");
     if (request.method === 'GET') {
         let urlReq = url.parse(request.url, true);
-        console.log(urlReq.query.test);
+        //console.log(urlReq.query.test);
+        
+        if (urlReq.query.reflect) {
+            if (urlReq.query.reflect == 'vpngate') {
+                const ref = await reflect.get('vpngate');
+                //console.log('ref = ' + ref);
+                if (!ref) {
+                    response.setHeader("Content-Length", 5);
+                    response.write('Error');
+                } else {
+                    response.setHeader("Content-Length", ref.length);
+                    response.write(ref);
+                }
+            }
+            response.end();
+            return;
+        }
+        
         response.end("get ok!");
     } else response.end("Hello world!");
 }).listen(3000, () => {
