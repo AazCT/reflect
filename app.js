@@ -5,10 +5,6 @@ const { parse } = require('querystring');
 const fileSystem = require('fs');
 const path = require('path');
 
-//const mysql = require('mysql');
-const mysql = require('mysql2/promise');
-const config = require('./config_aazone');
-const bottg  = require('./bot.js');
 const reflect = require('./reflect.js');
 const qconv = require('./qconv');
 
@@ -26,34 +22,6 @@ async function f() {
     //console.log(a);
 }
 
-/*conn.connect(err => {
-    if (err) {
-        console.log(err);
-        return err;
-    } else {
-        console.log('Database: Ok');
-    }
-});
-
-let query = "SELECT * FROM cdownload";
-
-conn.query(query, (err, result, field) => {
-    console.log(err);
-    console.log(result);
-    //console.log(field);
-    console.log(result[1]['name']);
-
-});
-
-conn.end(err => {
-    if (err) {
-        console.log(err);
-        return err;
-    } else {
-        console.log('Database: Close');
-    }    
-});*/
-
 const httpServer = http.createServer(async (request, response) => {
     //console.log('server work');
     response.setHeader("Content-Type", "text/html; charset=utf-8;");
@@ -67,27 +35,6 @@ const httpServer = http.createServer(async (request, response) => {
             } else {
                 response.write("<h2>odd</h2>");
             }
-            response.end();
-        } else if (urlReq.query.show) {
-            if (urlReq.query.show == 'myurl') {
-                f().then((value) => {
-                    value.forEach((v) => {
-                        //response.write("<h2>" + v['name'] + ' = ' + v['count'] + "</h2>");
-                        response.write(v['name'] + ' = ' + v['count'] + "\r\n");
-                    });
-                    response.end();
-                }).catch((err) => {
-                    response.write(`<h2>Error</h2>${err.message}`);
-                    response.end();
-                });
-                return;
-            } 
-            if (urlReq.query.show == 'tgbot') {
-                response.write(`<h2>${bottg.getBotInfo()}</h2>`);
-                response.end();
-                return;
-            }
-            response.write("<h2>Nothing to show.</h2>");
             response.end();
         } else if (urlReq.query.tenge) {
             if (urlReq.query.tenge) {
