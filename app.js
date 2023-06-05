@@ -9,7 +9,7 @@ const reflect = require('./reflect.js');
 const qconv = require('./qconv');
 
 const httpServer = http.createServer(async (request, response) => {
-    console.log('server work');
+    //console.log('server work');
     response.setHeader("Content-Type", "text/html; charset=utf-8;");
 
     if (request.method === 'GET') {
@@ -90,6 +90,7 @@ const httpServer = http.createServer(async (request, response) => {
 });*/
 http.createServer(function(request, response){
     console.log('server work');
+    response.setHeader("Content-Type", "text/html; charset=utf-8;");
     response.end("Hello world!");
 }).listen(3000, () => {
     console.log("Server is running at port 3000...");
