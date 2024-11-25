@@ -3,7 +3,7 @@ const fetch = require("node-fetch");
 const fetchAsync = async (url) => {
     try {
         const response = await fetch(url, {});
-        if (!responce.ok) return undefined;
+        //if (!responce.ok) return undefined;
         const data = await response.text();
         return data;
     } catch (e) {
